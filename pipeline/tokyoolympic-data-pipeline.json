@@ -111,7 +111,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLS",
+						"referenceName": "coaches",
 						"type": "DatasetReference"
 					}
 				]
@@ -168,7 +168,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLS",
+						"referenceName": "teams",
 						"type": "DatasetReference"
 					}
 				]
@@ -225,7 +225,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLS",
+						"referenceName": "medals",
 						"type": "DatasetReference"
 					}
 				]
@@ -282,7 +282,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLS",
+						"referenceName": "entries",
 						"type": "DatasetReference"
 					}
 				]
