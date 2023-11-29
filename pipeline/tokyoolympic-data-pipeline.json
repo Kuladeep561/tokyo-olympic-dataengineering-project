@@ -117,7 +117,7 @@
 				]
 			},
 			{
-				"name": "Coaches_copy1",
+				"name": "Teams",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
