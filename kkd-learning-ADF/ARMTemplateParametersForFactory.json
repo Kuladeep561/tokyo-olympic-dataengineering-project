@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "kkd-learning-ADF"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AthleteHTTP_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Athletes.csv"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://kkdtokyoolympicdata2021.dfs.core.windows.net/"
+		},
+		"CoachesHTTP_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Coaches.csv"
+		},
+		"EntriesGenderHTTP_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/EntriesGender.csv"
+		},
+		"MedalsHTTP_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Medals.csv"
+		},
+		"TeamsHTTP_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
+		},
+		"tokyoHTTP_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
+		}
+	}
+}
