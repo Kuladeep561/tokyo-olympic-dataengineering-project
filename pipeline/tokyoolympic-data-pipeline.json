@@ -219,7 +219,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "tokyoHTTP",
+						"referenceName": "MedalsHTTP",
 						"type": "DatasetReference"
 					}
 				],
@@ -276,7 +276,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "tokyoHTTP",
+						"referenceName": "EntriesGenderHTTP",
 						"type": "DatasetReference"
 					}
 				],
