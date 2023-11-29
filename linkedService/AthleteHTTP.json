@@ -1,15 +1,13 @@
 {
 	"name": "AthleteHTTP",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Coaches.csv",
+			"url": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Atheletes.csv",
 			"enableServerCertificateValidation": true,
-			"authenticationType": "Basic",
-			"userName": "Kuladeep561",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEFDNzg4MEU0LTAyQjYtNEFEOS04QzZDLThGMjg3QTAyNUFERF85MDc2NWJhZi1iYmI2LTQ0ZmYtYWU3NS00YTJkNTM1YmM0YmIiDQp9"
+			"authenticationType": "Anonymous"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
