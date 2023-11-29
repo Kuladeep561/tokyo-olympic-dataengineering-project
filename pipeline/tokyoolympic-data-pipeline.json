@@ -48,7 +48,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Athletes",
+						"referenceName": "AthletesHTTP",
 						"type": "DatasetReference"
 					}
 				],
