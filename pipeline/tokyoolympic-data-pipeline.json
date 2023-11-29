@@ -174,7 +174,7 @@
 				]
 			},
 			{
-				"name": "Coaches_copy2",
+				"name": "Medals",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
