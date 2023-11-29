@@ -162,7 +162,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "tokyoHTTP",
+						"referenceName": "TeamsHTTP",
 						"type": "DatasetReference"
 					}
 				],
