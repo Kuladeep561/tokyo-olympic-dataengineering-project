@@ -1,0 +1,22 @@
+{
+	"name": "TokyoDB",
+	"properties": {
+		"Name": "TokyoDB",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://tokyo-olympic-data@kkdtokyoolympicdata2021.dfs.core.windows.net/",
+			"Properties": {
+				"FormatType": "parquet",
+				"LinkedServiceName": "AzureDataLakeStorage1"
+			}
+		}
+	},
+	"type": "DATABASE"
+}
