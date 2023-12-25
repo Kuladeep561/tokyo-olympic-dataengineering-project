@@ -1,0 +1,22 @@
+{
+	"name": "tokyoolympicdb",
+	"properties": {
+		"Name": "tokyoolympicdb",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://tokyo-olympic-data@kkdtokyoolympicdata2021.dfs.core.windows.net/processed",
+			"Properties": {
+				"FormatType": "parquet",
+				"LinkedServiceName": "kkd-tokyo-olympic-sa-WorkspaceDefaultStorage"
+			}
+		}
+	},
+	"type": "DATABASE"
+}
