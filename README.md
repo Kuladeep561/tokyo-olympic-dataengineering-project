@@ -20,10 +20,10 @@ Upon successful ingestion, the data underwent transformation using Azure Databri
 
 ## Data Analytics
 
-The transformed data was integrated into Azure Synapse Analytics, a cloud-based data warehouse service, through Azure Data Lake Gen 2's linked services. This integration enabled the execution of complex analytics on the data. As an illustration, a sample analysis was conducted to rank countries based on the number of athletes participating in the Olympic games. View the analysis results in ![analytics.jpg](./kkd-tokyo-olympic-sa%20-%20Azure%20Synapse%20Analytics.png).
+The transformed data was integrated into Azure Synapse Analytics, a cloud-based data warehouse service, through Azure Data Lake Gen 2's linked services. This integration enabled the execution of complex analytics on the data. As an illustration, a sample analysis was conducted to rank countries based on the number of athletes participating in the Olympic games. View the analysis results in ![analytics.jpg](./kkd-tokyo-olympic-sa%20-%20Azure%20Synapse%20Analytics.png)
 
 ## Data Visualization
 
-For effective visualization, Power BI, a business intelligence platform, was employed to create dashboards and reports. Power BI was connected to Azure Databricks as a data source, utilizing tables prepared during the transformation phase. Several dashboards were created to communicate key insights from the data. Refer to [dashboards.pdf](./tokyo-olympics-dashboards.pdf) for a visual representation of the prepared dashboards.
+For effective visualization, Power BI, a business intelligence platform, was employed to create dashboards and reports. Power BI was connected to Azure Databricks as a data source, utilizing tables prepared during the transformation phase. Several dashboards were created to communicate key insights from the data. Refer to [dashboards.pdf](./tokyo-olympics-dashboards.pdf) for a visual representation of the prepared dashboards. Here is an example dashboard ![dashboard-medals.jpg](/dashboard-medals.png)
 
 ---
