@@ -24,6 +24,6 @@ The transformed data was integrated into Azure Synapse Analytics, a cloud-based 
 
 ## Data Visualization
 
-For effective visualization, Power BI, a business intelligence platform, was employed to create dashboards and reports. Power BI was connected to Azure Databricks as a data source, utilizing tables prepared during the transformation phase. Several dashboards were created to communicate key insights from the data. Refer to [dashboards.pdf](./tokyo-olympics-dashboards.pdf) for a visual representation of the prepared dashboards. Here is an example dashboard ![dashboard-medals.jpg](/dashboard-medals.png)
+For effective visualization, Power BI, a business intelligence platform, was employed to create dashboards and reports. Power BI was connected to Azure Databricks as a data source, utilizing tables prepared during the transformation phase. Several dashboards were created to communicate key insights from the data. Refer to [dashboards.pdf](./tokyo-olympics-dashboards.pdf) for a visual representation of the prepared dashboards. Here is an example dashboard ![dashboard-medals.jpg](/dashboard-medals.jpg)
 
 ---
