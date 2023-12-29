@@ -4,6 +4,8 @@
 
 This report details the data engineering project focused on Tokyo Olympics 2021 data. The project involved designing and implementing a data warehouse architecture utilizing Azure Data Factory, Azure Databricks, Azure Synapse Analytics, and Power BI.
 
+Data Architecture.jpg
+
 ### Data Source
 
 The dataset used for analysis was obtained from [Kaggle](https://www.kaggle.com/datasets/arjunprasadsarkhel/2021-olympics-in-tokyo). The raw CSV files were hosted on GitHub and served as the data source, accessible in the [data](data) directory of this repository.
