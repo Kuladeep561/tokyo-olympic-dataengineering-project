@@ -50,7 +50,7 @@
 		],
 		"typeProperties": {
 			"schema": "SalesLT",
-			"table": "Customer"
+			"table": "Address"
 		}
 	}
 }
