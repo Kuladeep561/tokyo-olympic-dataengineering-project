@@ -11,6 +11,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
+		"adv_works_storage_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'adv_works_storage'"
+		},
+		"onprimsqlserver_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'onprimsqlserver'",
+			"defaultValue": "Integrated Security=True;Data Source=DE-IDK-PC776;Initial Catalog=AdventureWorksLT2022"
+		},
 		"AthleteHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Athletes.csv"
@@ -34,6 +43,18 @@
 		"TeamsHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
+		},
+		"adv_works_storage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kkdadventureworks.dfs.core.windows.net/"
+		},
+		"onprimsqlserver_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "idk\\kuk"
+		},
+		"sqlauth_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://tokyo-olympic-keys-vault.vault.azure.net/"
 		},
 		"tokyoHTTP_properties_typeProperties_url": {
 			"type": "string",
@@ -69,6 +90,9 @@
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
+					"adv_works_storage_accountKey": {
+						"value": "[parameters('adv_works_storage_accountKey')]"
+					},
 					"AthleteHTTP_properties_typeProperties_url": {
 						"value": "[parameters('AthleteHTTP_properties_typeProperties_url')]"
 					},
@@ -87,12 +111,44 @@
 					"TeamsHTTP_properties_typeProperties_url": {
 						"value": "[parameters('TeamsHTTP_properties_typeProperties_url')]"
 					},
+					"adv_works_storage_properties_typeProperties_url": {
+						"value": "[parameters('adv_works_storage_properties_typeProperties_url')]"
+					},
+					"sqlauth_properties_typeProperties_baseUrl": {
+						"value": "[parameters('sqlauth_properties_typeProperties_baseUrl')]"
+					},
 					"tokyoHTTP_properties_typeProperties_url": {
 						"value": "[parameters('tokyoHTTP_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "kkd-learning-ADF_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"onprimsqlserver_connectionString": {
+						"value": "[parameters('onprimsqlserver_connectionString')]"
+					},
+					"onprimsqlserver_properties_typeProperties_userName": {
+						"value": "[parameters('onprimsqlserver_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'kkd-learning-ADF_ArmTemplate_0')]"
+			]
 		}
 	]
 }

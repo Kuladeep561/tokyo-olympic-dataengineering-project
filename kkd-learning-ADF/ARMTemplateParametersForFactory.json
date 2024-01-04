@@ -8,6 +8,12 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"adv_works_storage_accountKey": {
+			"value": ""
+		},
+		"onprimsqlserver_connectionString": {
+			"value": "Integrated Security=True;Data Source=DE-IDK-PC776;Initial Catalog=AdventureWorksLT2022"
+		},
 		"AthleteHTTP_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Athletes.csv"
 		},
@@ -25,6 +31,15 @@
 		},
 		"TeamsHTTP_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
+		},
+		"adv_works_storage_properties_typeProperties_url": {
+			"value": "https://kkdadventureworks.dfs.core.windows.net/"
+		},
+		"onprimsqlserver_properties_typeProperties_userName": {
+			"value": "idk\\kuk"
+		},
+		"sqlauth_properties_typeProperties_baseUrl": {
+			"value": "https://tokyo-olympic-keys-vault.vault.azure.net/"
 		},
 		"tokyoHTTP_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
