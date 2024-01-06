@@ -60,6 +60,10 @@
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
 		},
+		"AzureDatabricks_advWorks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1130-132726-ywpht01m"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -143,6 +147,9 @@
 					},
 					"onprimsqlserver_properties_typeProperties_userName": {
 						"value": "[parameters('onprimsqlserver_properties_typeProperties_userName')]"
+					},
+					"AzureDatabricks_advWorks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks_advWorks_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},
