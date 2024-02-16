@@ -28,6 +28,14 @@
 			"type": "string",
 			"defaultValue": "https://kkdtokyoolympicdata2021.dfs.core.windows.net/"
 		},
+		"AzureDatabricks_advWorks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1130-132726-ywpht01m"
+		},
+		"AzureDatabricks_kevee_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1130-132726-ywpht01m"
+		},
 		"CoachesHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Coaches.csv"
@@ -59,10 +67,6 @@
 		"tokyoHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
-		},
-		"AzureDatabricks_advWorks_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "1130-132726-ywpht01m"
 		},
 		"containerUri": {
 			"type": "string",
@@ -145,11 +149,14 @@
 					"onprimsqlserver_connectionString": {
 						"value": "[parameters('onprimsqlserver_connectionString')]"
 					},
-					"onprimsqlserver_properties_typeProperties_userName": {
-						"value": "[parameters('onprimsqlserver_properties_typeProperties_userName')]"
-					},
 					"AzureDatabricks_advWorks_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('AzureDatabricks_advWorks_properties_typeProperties_existingClusterId')]"
+					},
+					"AzureDatabricks_kevee_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks_kevee_properties_typeProperties_existingClusterId')]"
+					},
+					"onprimsqlserver_properties_typeProperties_userName": {
+						"value": "[parameters('onprimsqlserver_properties_typeProperties_userName')]"
 					}
 				}
 			},

@@ -28,6 +28,14 @@
 			"type": "string",
 			"defaultValue": "https://kkdtokyoolympicdata2021.dfs.core.windows.net/"
 		},
+		"AzureDatabricks_advWorks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1130-132726-ywpht01m"
+		},
+		"AzureDatabricks_kevee_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1130-132726-ywpht01m"
+		},
 		"CoachesHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Coaches.csv"
@@ -59,10 +67,6 @@
 		"tokyoHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Teams.csv"
-		},
-		"AzureDatabricks_advWorks_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "1130-132726-ywpht01m"
 		}
 	},
 	"variables": {
@@ -256,6 +260,147 @@
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_advWorks')]",
 				"[concat(variables('factoryId'), '/datasets/CopyEachTable')]",
 				"[concat(variables('factoryId'), '/datasets/AllTables')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/kevee-Revit-PowerBI')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Loadingdata",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/kuladeep127@gmail.com/2_Loadingdata",
+							"baseParameters": {
+								"p_project_id": {
+									"value": "@pipeline().parameters.p_project_id",
+									"type": "Expression"
+								},
+								"p_folder_id": {
+									"value": "@pipeline().parameters.p_folder_id",
+									"type": "Expression"
+								},
+								"p_model_name": {
+									"value": "@pipeline().parameters.p_model_name",
+									"type": "Expression"
+								},
+								"p_view_name": {
+									"value": "@pipeline().parameters.p_view_name",
+									"type": "Expression"
+								},
+								"p_project_name": {
+									"value": "@pipeline().parameters.p_project_name",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks_kevee",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Bronze to Silver",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Loadingdata",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/kuladeep127@gmail.com/3_Bronze to Silver",
+							"baseParameters": {
+								"p_project_name": {
+									"value": "@pipeline().parameters.p_project_name",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks_kevee",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Silver to Gold",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Bronze to Silver",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/kuladeep127@gmail.com/4_Silver to Gold",
+							"baseParameters": {
+								"p_project_name": {
+									"value": "@pipeline().parameters.p_project_name",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks_kevee",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"p_project_id": {
+						"type": "string"
+					},
+					"p_folder_id": {
+						"type": "string"
+					},
+					"p_model_name": {
+						"type": "string"
+					},
+					"p_view_name": {
+						"type": "string"
+					},
+					"p_project_name": {
+						"type": "string"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_kevee')]"
 			]
 		},
 		{
@@ -1112,6 +1257,55 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_advWorks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7604844659077757.17.azuredatabricks.net",
+					"accessToken": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "sqlauth",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "kkdlearning-databricks-accesstoken"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks_advWorks_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlauth')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_kevee')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7604844659077757.17.azuredatabricks.net",
+					"accessToken": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "sqlauth",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "kkdlearning-databricks-accesstoken",
+						"secretVersion": "c583f9e886d74d448a22d5683d24af09"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks_kevee_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlauth')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CoachesHTTP')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1255,30 +1449,6 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_advWorks')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-7604844659077757.17.azuredatabricks.net",
-					"accessToken": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "sqlauth",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "kkdlearning-databricks-accesstoken"
-					},
-					"existingClusterId": "[parameters('AzureDatabricks_advWorks_properties_typeProperties_existingClusterId')]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlauth')]"
-			]
 		}
 	]
 }
