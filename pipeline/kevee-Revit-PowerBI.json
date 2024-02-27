@@ -138,6 +138,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "@concat('select name from dbo.list_of_databases where name = ''', pipeline().parameters.p_project_name, '''')\r\n",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -149,8 +153,8 @@
 				}
 			},
 			{
-				"name": "check DB exists",
-				"type": "IfCondition",
+				"name": "ForEach1",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "List of Databases",
@@ -161,38 +165,52 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"expression": {
-						"value": "@contains(activity('List of Databases').output,pipeline().parameters.p_project_name)",
+					"items": {
+						"value": "@activity('List of Databases').output.value",
 						"type": "Expression"
 					},
-					"ifFalseActivities": [
+					"activities": [
 						{
-							"name": "createDB",
-							"type": "Script",
+							"name": "If Condition1",
+							"type": "IfCondition",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
-							"linkedServiceName": {
-								"referenceName": "AzureSynapseAnalytics_Kevee",
-								"type": "LinkedServiceReference"
-							},
 							"typeProperties": {
-								"scripts": [
+								"expression": {
+									"value": "@equals(item().name,pipeline().parameters.p_project_name)",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
 									{
-										"type": "Query",
-										"text": {
-											"value": "@concat('CREATE DATABASE [', pipeline().parameters.p_project_name, ']')\n",
-											"type": "Expression"
+										"name": "create DB",
+										"type": "Script",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"linkedServiceName": {
+											"referenceName": "AzureSynapseAnalytics_Kevee",
+											"type": "LinkedServiceReference"
+										},
+										"typeProperties": {
+											"scripts": [
+												{
+													"type": "Query",
+													"text": {
+														"value": "@concat('CREATE DATABASE ', pipeline().parameters.p_project_name)",
+														"type": "Expression"
+													}
+												}
+											],
+											"scriptBlockExecutionTimeout": "02:00:00"
 										}
 									}
-								],
-								"scriptBlockExecutionTimeout": "02:00:00"
+								]
 							}
 						}
 					]
@@ -213,7 +231,16 @@
 				"type": "string"
 			},
 			"p_project_name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "P3138"
+			}
+		},
+		"variables": {
+			"list of dbs": {
+				"type": "Array"
+			},
+			"databases": {
+				"type": "Array"
 			}
 		},
 		"annotations": []
