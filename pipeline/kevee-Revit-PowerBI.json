@@ -5,6 +5,8 @@
 			{
 				"name": "Loadingdata",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -47,6 +49,8 @@
 			{
 				"name": "Bronze to Silver",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Loadingdata",
@@ -80,6 +84,8 @@
 			{
 				"name": "Silver to Gold",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Bronze to Silver",
@@ -108,6 +114,39 @@
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks_kevee",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "list of DBs",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Silver to Gold",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics_Kevee",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "SELECT name, database_id, create_date  \nFROM sys.databases"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
 				}
 			}
 		],
