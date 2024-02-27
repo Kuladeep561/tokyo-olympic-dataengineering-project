@@ -20,6 +20,10 @@
 			"metadata": "Secure string for 'connectionString' of 'onprimsqlserver'",
 			"defaultValue": "Integrated Security=True;Data Source=DE-IDK-PC776;Initial Catalog=AdventureWorksLT2022"
 		},
+		"AzureSynapseAnalytics_Kevee_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics_Kevee'"
+		},
 		"AthleteHTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Athletes.csv"
@@ -271,6 +275,8 @@
 					{
 						"name": "Loadingdata",
 						"type": "DatabricksNotebook",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
@@ -313,6 +319,8 @@
 					{
 						"name": "Bronze to Silver",
 						"type": "DatabricksNotebook",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [
 							{
 								"activity": "Loadingdata",
@@ -346,6 +354,8 @@
 					{
 						"name": "Silver to Gold",
 						"type": "DatabricksNotebook",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [
 							{
 								"activity": "Bronze to Silver",
@@ -375,6 +385,39 @@
 							"referenceName": "AzureDatabricks_kevee",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "list of DBs",
+						"type": "Script",
+						"dependsOn": [
+							{
+								"activity": "Silver to Gold",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"linkedServiceName": {
+							"referenceName": "AzureSynapseAnalytics_Kevee",
+							"type": "LinkedServiceReference"
+						},
+						"typeProperties": {
+							"scripts": [
+								{
+									"type": "Query",
+									"text": "SELECT name, database_id, create_date  \nFROM sys.databases"
+								}
+							],
+							"scriptBlockExecutionTimeout": "02:00:00"
+						}
 					}
 				],
 				"policy": {
@@ -400,7 +443,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_kevee')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_kevee')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics_Kevee')]"
 			]
 		},
 		{
@@ -1447,6 +1491,19 @@
 				"type": "SelfHosted",
 				"description": "to connect SQL server on prim",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalytics_Kevee')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSynapseAnalytics_Kevee_connectionString')]"
+				}
 			},
 			"dependsOn": []
 		}

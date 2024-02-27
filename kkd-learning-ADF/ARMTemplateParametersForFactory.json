@@ -14,6 +14,9 @@
 		"onprimsqlserver_connectionString": {
 			"value": "Integrated Security=True;Data Source=DE-IDK-PC776;Initial Catalog=AdventureWorksLT2022"
 		},
+		"AzureSynapseAnalytics_Kevee_connectionString": {
+			"value": ""
+		},
 		"AthleteHTTP_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/Kuladeep561/tokyo-olympic-dataengineering-project/main/data/Athletes.csv"
 		},
