@@ -1,5 +1,5 @@
 {
-	"name": "AzureSynapseAnalyticsTable1",
+	"name": "AzureSynapseAnalytics_listOfDBs",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSynapseAnalytics_Kevee",
@@ -7,6 +7,10 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlDWTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "list_of_databases"
+		}
 	}
 }
