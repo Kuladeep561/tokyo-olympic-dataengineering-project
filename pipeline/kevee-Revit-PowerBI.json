@@ -166,10 +166,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greater(activity('List of Databases').output.count,1)",
+						"value": "@greaterOrEquals(activity('List of Databases').output.count,1)",
 						"type": "Expression"
 					},
-					"ifTrueActivities": [
+					"ifFalseActivities": [
 						{
 							"name": "Create DB",
 							"type": "Script",
