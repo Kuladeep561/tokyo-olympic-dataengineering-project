@@ -147,7 +147,7 @@
 				}
 			},
 			{
-				"name": "Check DB exist in SAalytics",
+				"name": "Check DB exist in Synapse Alytics",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
@@ -211,8 +211,7 @@
 				"type": "string"
 			},
 			"p_project_name": {
-				"type": "string",
-				"defaultValue": "P3138"
+				"type": "string"
 			}
 		},
 		"variables": {
