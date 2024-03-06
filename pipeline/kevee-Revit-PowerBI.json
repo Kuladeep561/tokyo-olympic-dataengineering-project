@@ -192,6 +192,45 @@
 								],
 								"scriptBlockExecutionTimeout": "02:00:00"
 							}
+						},
+						{
+							"name": "create stored procedure",
+							"type": "Script",
+							"dependsOn": [
+								{
+									"activity": "Create DB",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"linkedServiceName": {
+								"referenceName": "serverlesSQL_kevee_sa",
+								"type": "LinkedServiceReference",
+								"parameters": {
+									"DBName": {
+										"value": "@pipeline().parameters.p_project_name",
+										"type": "Expression"
+									}
+								}
+							},
+							"typeProperties": {
+								"scripts": [
+									{
+										"type": "Query",
+										"text": "CREATE OR ALTER PROC CreatesQLserverlessView_gold \n    @DatabaseName VARCHAR(100),\n    @ViewName VARCHAR(100)\nAS\nBEGIN\n    DECLARE @statement NVARCHAR(MAX)\n\n    -- Switch the database context\n    SET @statement = N'USE ' + @DatabaseName + ';'\n    EXEC (@statement)\n\n    -- Create or alter the view\n    SET @statement = N'CREATE OR ALTER VIEW ' + @ViewName + N' AS\n    SELECT *\n    FROM OPENROWSET (\n        BULK ''https://keveebimdata.dfs.core.windows.net/gold/' + @DatabaseName + N'/' + @ViewName + '/'',\n        FORMAT = ''DELTA''\n    ) AS [result]'\n    \n    EXEC (@statement)\nEND"
+									}
+								],
+								"scriptBlockExecutionTimeout": "02:00:00"
+							}
 						}
 					]
 				}
