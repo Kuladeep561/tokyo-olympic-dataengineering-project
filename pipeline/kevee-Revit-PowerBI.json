@@ -5,6 +5,8 @@
 			{
 				"name": "Loadingdata",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -47,6 +49,8 @@
 			{
 				"name": "Bronze to Silver",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Loadingdata",
@@ -80,6 +84,8 @@
 			{
 				"name": "Silver to Gold",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Bronze to Silver",
@@ -250,7 +256,8 @@
 				"type": "string"
 			},
 			"p_project_name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "P3138"
 			}
 		},
 		"variables": {
