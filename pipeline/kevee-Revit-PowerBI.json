@@ -238,16 +238,20 @@
 		],
 		"parameters": {
 			"p_project_id": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "2b54d120-b16d-4aa4-846a-185c54fb674c"
 			},
 			"p_folder_id": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "urn:adsk.wipprod:fs.folder:co.GMZGm3S7TfaogU3SOuUPcQ"
 			},
 			"p_model_name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "IDK_SEC_FTP_M_TM.rvt"
 			},
 			"p_view_name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "BIM 360 // FTP // IFC Export // Navisworks"
 			},
 			"p_project_name": {
 				"type": "string",
