@@ -239,23 +239,23 @@
 		"parameters": {
 			"p_project_id": {
 				"type": "string",
-				"defaultValue": "2b54d120-b16d-4aa4-846a-185c54fb674c"
+				"defaultValue": "d2a531a6-80a1-4fa5-aef0-9f9fefd04bad"
 			},
 			"p_folder_id": {
 				"type": "string",
-				"defaultValue": "urn:adsk.wipprod:fs.folder:co.GMZGm3S7TfaogU3SOuUPcQ"
+				"defaultValue": "urn:adsk.wipprod:fs.folder:co.iMlm6NWnQ9G1tntDKKhWcA"
 			},
 			"p_model_name": {
 				"type": "string",
-				"defaultValue": "IDK_SEC_FTP_M_TM.rvt"
+				"defaultValue": "D1133-GSM Gereonstraße Meerbusch.rvt"
 			},
 			"p_view_name": {
 				"type": "string",
-				"defaultValue": "BIM 360 // FTP // IFC Export // Navisworks"
+				"defaultValue": "BIM360 Design Model // IFC Export // Navisworks"
 			},
 			"p_project_name": {
 				"type": "string",
-				"defaultValue": "P3138"
+				"defaultValue": "D1133"
 			}
 		},
 		"variables": {
